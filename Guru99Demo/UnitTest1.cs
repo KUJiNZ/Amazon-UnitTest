@@ -36,14 +36,14 @@ namespace UnitTest
 
                     List<Item> items = Amazon.Pages.Results.GetResultsBy(dict);
 
-                    foreach (var e in items)
+                    foreach (var item in items)
                     {
             
                         Console.WriteLine("---------------------------------------------------------------------------------");
-                        Console.WriteLine(e.title);
-                        Console.WriteLine(e.link);
-                        Console.WriteLine(e.price);
-                        Console.WriteLine(e.shipping);
+                        Console.WriteLine(item.title);
+                        Console.WriteLine(item.link);
+                        Console.WriteLine(item.price);
+                        Console.WriteLine(item.shipping);
                         Console.WriteLine("---------------------------------------------------------------------------------");
                     }
                     
