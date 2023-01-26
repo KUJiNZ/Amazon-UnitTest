@@ -29,10 +29,13 @@ namespace UnitTest
                     bf.InitBrowser("Chrome");
                     IWebDriver driver = bf.drivers["CHROME"];
                     driver.Navigate().GoToUrl(URL);
+
                     Amazon Amazon = new Amazon(driver);
                     Amazon.Pages.Home.SearchBar.Text="Mouse";
                     Amazon.Pages.Home.SearchBar.Click();
+
                     List<Item> items = Amazon.Pages.Results.GetResultsBy(dict);
+
                     foreach (var e in items)
                     {
             
@@ -43,9 +46,9 @@ namespace UnitTest
                         Console.WriteLine(e.shipping);
                         Console.WriteLine("---------------------------------------------------------------------------------");
                     }
-
-
-                //    Assert.IsTrue(items.Count() > 0);
+                    
+                   
+                   Assert.IsTrue(items.Count() > 0);
 
         }
 
