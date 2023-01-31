@@ -5,19 +5,24 @@ namespace UnitTest
 {
         class UnitTest1
         {
-            public string URL = "https://www.amazon.com";
+
+            IWebDriver driver;
             BrowserFactory bf;
 
 
             [SetUp]
                 public void Start()
                 {
-                    //AmazonTest Amazon = new AmazonTest("Chrome", URL);
+                    //#WebDriver Init
+                    bf = new BrowserFactory();
+                    bf.InitBrowser("Chrome");
+                    driver = bf.drivers["CHROME"];
                 }
 
             [Test]
                 public void test()
                 {
+                    //Filter of searching
                     var dict = new Dictionary<string, string>()
                     {
                         {"Price_Lower_Then","100"},
@@ -25,15 +30,14 @@ namespace UnitTest
                         {"Free_Shipping","true"}
                     };
 
-                    bf = new BrowserFactory();
-                    bf.InitBrowser("Chrome");
-                    IWebDriver driver = bf.drivers["CHROME"];
-                    driver.Navigate().GoToUrl(URL);
-
+                    
+                    
+                    //POM init
                     Amazon Amazon = new Amazon(driver);
                     Amazon.Pages.Home.SearchBar.Text="Mouse";
                     Amazon.Pages.Home.SearchBar.Click();
-
+                    
+                    //Result of items found
                     List<Item> items = Amazon.Pages.Results.GetResultsBy(dict);
 
                     foreach (var item in items)
@@ -47,8 +51,8 @@ namespace UnitTest
                         Console.WriteLine("---------------------------------------------------------------------------------");
                     }
                     
-                   
-                   Assert.IsTrue(items.Count() > 0);
+                    
+                    Assert.IsTrue(items.Count() > 0);
 
         }
 

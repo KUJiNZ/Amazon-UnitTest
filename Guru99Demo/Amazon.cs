@@ -5,6 +5,7 @@ namespace UnitTest
     {
         private Pages pages;
         private IWebDriver BrowserDriver;
+        private string URL = "https://www.amazon.com";
 
 
 
@@ -12,6 +13,7 @@ namespace UnitTest
         public Amazon(IWebDriver BrowserDriver)
         {
             this.BrowserDriver = BrowserDriver;
+            this.BrowserDriver.Navigate().GoToUrl(URL);
         }
 
         public Pages Pages 
